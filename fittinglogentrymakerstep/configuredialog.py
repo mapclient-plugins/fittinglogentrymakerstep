@@ -2,6 +2,7 @@
 
 from PySide import QtGui
 from fittinglogentrymakerstep.ui_configuredialog import Ui_ConfigureDialog
+from PySide.QtGui import QDialog, QFileDialog, QDialogButtonBox
 
 INVALID_STYLE_SHEET = 'background-color: rgba(239, 0, 0, 50)'
 DEFAULT_STYLE_SHEET = ''
@@ -61,7 +62,9 @@ class ConfigureDialog(QtGui.QDialog):
             self._ui.lineEdit0.setStyleSheet(DEFAULT_STYLE_SHEET)
         else:
             self._ui.lineEdit0.setStyleSheet(INVALID_STYLE_SHEET)
-
+        
+        self._ui.buttonBox.button(QDialogButtonBox.Ok).setEnabled(valid)
+        
         return valid
 
     def getConfig(self):
