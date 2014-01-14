@@ -50,7 +50,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         may be connected up to a button in a widget for example.
         '''
         # Put your execute step code here before calling the '_doneExecution' method.
-        if self._config['String'][-2:] != '\n'
+        if self._config['String'][-2:] != '\n':
 			self._config['String'] = self._config['String'] + '\n'
 		
         self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
