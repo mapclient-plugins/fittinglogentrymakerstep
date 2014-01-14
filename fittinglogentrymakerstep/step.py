@@ -49,19 +49,22 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         Make sure you call the _doneExecution() method when finished.  This method
         may be connected up to a button in a widget for example.
         '''
+        
         # Put your execute step code here before calling the '_doneExecution' method.
         if self._config['String'][-2:] != '\n':
-			self._config['String'] = self._config['String'] + '\n'
-		
-        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
-        self._doneExecution()
+		    self._config['String'] = self._config['String'] + '\n'
         
-        def setPortData(self, index, dataIn):
+        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
+
+        self._doneExecution()
+
+    def setPortData(self, index, dataIn):
         '''
         Add your code here that will set the appropriate objects for this step.
         The index is the index of the port in the port list.  If there is only one
         uses port for this step then the index can be ignored.
         '''
+        
         if index == 0:
             self.subjectName = dataIn # String of the subjects name
         elif index == 1:
