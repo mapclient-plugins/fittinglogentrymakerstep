@@ -40,7 +40,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
                       'string'))
         self._config = {}
         self._config['identifier'] = ''
-        self._config['string'] = ' '
+        self._config['String'] = ' '
 
 
     def execute(self):
@@ -51,10 +51,10 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         
         # Put your execute step code here before calling the '_doneExecution' method.
-        if self._config['string'][-2:] != '\n':
-		    self._config['string'] = self._config['string'] + '\n'
+        if self._config['String'][-2:] != '\n':
+		    self._config['String'] = self._config['String'] + '\n'
         
-        self.logEntryLine = self._config['string'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
+        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
 
         self._doneExecution()
 
