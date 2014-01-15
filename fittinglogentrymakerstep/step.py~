@@ -49,17 +49,17 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
 		print 'wrong subjectName type'
 		print self.subjectName
 
-	if isinstance(self.rbrRsme, float):
-		print self.rbrRsme
+	if isinstance(self.rbrRmse, float):
+		print self.rbrRmse
 	else:
-		print 'wrong rbrRsme type'
-		print self.rbrRsme
+		print 'wrong rbrRmse type'
+		print self.rbrRmse
 
-	if isinstance(self.hmfRsme, float):
-		print self.hmfRsme
+	if isinstance(self.hmfRmse, float):
+		print self.hmfRmse
 	else:
-		print 'wrong hmfRsme type'
-		print self.hmfRsme
+		print 'wrong hmfRmse type'
+		print self.hmfRmse
 
 	if isinstance(self.mfRmse, float):
 		print self.mfRmse
@@ -78,7 +78,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         if self._config['String'][-2:] != '\n':
 		    self._config['String'] = self._config['String'] + '\n'
         
-        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
+        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
 
         self._doneExecution()
 
@@ -92,9 +92,13 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         if index == 0:
             self.subjectName = dataIn # String of the subjects name
         elif index == 1:
-            self.rbrRsme = dataIn # Float rigid-body registration RMSE
+            self.rbrRmse = dataIn # Float rigid-body registration RMSE
         elif index == 2:
-            self.hmfRsme = dataIn # Float host-mesh fitting RSME
+<<<<<<< HEAD
+            self.hmfRmse = dataIn # Float host-mesh fitting Rmse
+=======
+            self.hmfRmse = dataIn # Float host-mesh fitting RSME
+>>>>>>> b9d8d2eebc3b349e956cde7c432ac05c161a6db2
         else:
             self.mfRmse = dataIn # Float mesh fitting RMSE
 
