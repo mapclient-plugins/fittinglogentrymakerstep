@@ -25,22 +25,22 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         # Ports:
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'String'))
+                      'string'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'Float'))
+                      'float'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'Float'))
+                      'float'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#uses',
-                      'Float'))
+                      'float'))
         self.addPort(('http://physiomeproject.org/workflow/1.0/rdf-schema#port',
                       'http://physiomeproject.org/workflow/1.0/rdf-schema#provides',
-                      'String'))
+                      'string'))
         self._config = {}
         self._config['identifier'] = ''
-        self._config['String'] = ' '
+        self._config['string'] = ' '
 
 
     def execute(self):
@@ -51,10 +51,10 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         
         # Put your execute step code here before calling the '_doneExecution' method.
-        if self._config['String'][-2:] != '\n':
-		    self._config['String'] = self._config['String'] + '\n'
+        if self._config['string'][-2:] != '\n':
+		    self._config['string'] = self._config['string'] + '\n'
         
-        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
+        self.logEntryLine = self._config['string'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
 
         self._doneExecution()
 
