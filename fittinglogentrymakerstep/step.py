@@ -54,7 +54,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         if self._config['String'][-2:] != '\n':
 		    self._config['String'] = self._config['String'] + '\n'
         
-        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRsme,self.hmfRsme,self.mfRmse)
+        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
 
         self._doneExecution()
 
@@ -68,9 +68,9 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         if index == 0:
             self.subjectName = dataIn # String of the subjects name
         elif index == 1:
-            self.rbrRsme = dataIn # Float rigid-body registration RMSE
+            self.rbrRmse = dataIn # Float rigid-body registration RMSE
         elif index == 2:
-            self.hmfRsme = dataIn # Float host-mesh fitting RSME
+            self.hmfRmse = dataIn # Float host-mesh fitting RSME
         else:
             self.mfRmse = dataIn # Float mesh fitting RMSE
 
