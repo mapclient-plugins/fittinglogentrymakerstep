@@ -43,29 +43,26 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         self._config['String'] = ' '
 
     def _validateInputs(self):
-	if isinstance(self.subjectName, str):
-		print self.subjectName
-	else:
-		print 'wrong subjectName type'
-		print self.subjectName
+        print 'fitting log entry: validating inputs'
+        if isinstance(self.subjectName, str):
+        	print 'subject name:', self.subjectName
+        else:
+        	print 'wrong subjectName type:', self.subjectName.__class__
 
-	if isinstance(self.rbrRmse, float):
-		print self.rbrRmse
-	else:
-		print 'wrong rbrRmse type'
-		print self.rbrRmse
+        if isinstance(self.rbrRmse, float):
+        	print 'reg rmse:', self.rbrRmse
+        else:
+        	print 'wrong rbrRmse type', self.rbrRmse.__class__
 
-	if isinstance(self.hmfRmse, float):
-		print self.hmfRmse
-	else:
-		print 'wrong hmfRmse type'
-		print self.hmfRmse
+        if isinstance(self.hmfRmse, float):
+        	print 'hmf rmse:', self.hmfRmse
+        else:
+        	print 'wrong hmfRmse type', self.hmfRmse.__class__
 
-	if isinstance(self.mfRmse, float):
-		print self.mfRmse
-	else:
-		print 'wrong mfRmse type'
-		print self.mfRmse
+        if isinstance(self.mfRmse, float):
+        	print 'fit rmse:', self.mfRmse
+        else:
+        	print 'wrong mfRmse type', self.mfRmse.__class__
 
     def execute(self):
         '''
@@ -79,7 +76,8 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
 		    self._config['String'] = self._config['String'] + '\n'
         
         self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
-
+        print 'log entry:'
+        print self.logEntryLine
         self._doneExecution()
 
     def setPortData(self, index, dataIn):
@@ -90,13 +88,13 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         
         if index == 0:
-            self.subjectName = dataIn # String of the subjects name
+            self.subjectName = str(dataIn) # String of the subjects name
         elif index == 1:
-            self.rbrRmse = dataIn # Float rigid-body registration RMSE
+            self.rbrRmse = float(dataIn) # Float rigid-body registration RMSE
         elif index == 2:
-            self.hmfRmse = dataIn # Float host-mesh fitting Rmse
+            self.hmfRmse = float(dataIn) # Float host-mesh fitting Rmse
         else:
-            self.mfRmse = dataIn # Float mesh fitting RMSE
+            self.mfRmse = float(dataIn) # Float mesh fitting RMSE
 
     def getPortData(self, index):
         '''
