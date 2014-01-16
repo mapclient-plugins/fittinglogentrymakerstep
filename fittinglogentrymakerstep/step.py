@@ -72,7 +72,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         self._validateInputs()
         # Put your execute step code here before calling the '_doneExecution' method.
-        if self._config['String'][-2:] != '\n':
+        if self._config['String'][-1:] != '\n':
 		    self._config['String'] = self._config['String'] + '\n'
         
         self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
