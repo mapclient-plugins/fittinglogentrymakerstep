@@ -3,18 +3,14 @@
 MAP Client Plugin Step
 '''
 import os
-
-from PySide import QtGui
 from PySide import QtCore
-
 from mountpoints.workflowstep import WorkflowStepMountPoint
 from fittinglogentrymakerstep.configuredialog import ConfigureDialog
 
 
 class FittingLogEntryMakerStep(WorkflowStepMountPoint):
     '''
-    Skeleton step which is intended to be a helpful starting point
-    for new steps.
+    Step for formatting fitting errors into a log entry string.
     '''
 
     def __init__(self, location):
