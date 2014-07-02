@@ -7,8 +7,8 @@ import os
 from PySide import QtGui
 from PySide import QtCore
 
-from mountpoints.workflowstep import WorkflowStepMountPoint
-from fittinglogentrymakerstep.configuredialog import ConfigureDialog
+from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
+from mapclientplugins.fittinglogentrymakerstep.configuredialog import ConfigureDialog
 
 
 class FittingLogEntryMakerStep(WorkflowStepMountPoint):
