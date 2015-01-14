@@ -3,18 +3,14 @@
 MAP Client Plugin Step
 '''
 import os
-
-from PySide import QtGui
 from PySide import QtCore
-
-from mountpoints.workflowstep import WorkflowStepMountPoint
-from fittinglogentrymakerstep.configuredialog import ConfigureDialog
+from mapclient.mountpoints.workflowstep import WorkflowStepMountPoint
+from mapclientplugins.fittinglogentrymakerstep.configuredialog import ConfigureDialog
 
 
 class FittingLogEntryMakerStep(WorkflowStepMountPoint):
     '''
-    Skeleton step which is intended to be a helpful starting point
-    for new steps.
+    Step for formatting fitting errors into a log entry string.
     '''
 
     def __init__(self, location):
@@ -43,29 +39,26 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         self._config['String'] = ' '
 
     def _validateInputs(self):
-	if isinstance(self.subjectName, str):
-		print self.subjectName
-	else:
-		print 'wrong subjectName type'
-		print self.subjectName
+        print('fitting log entry: validating inputs')
+        if isinstance(self.subjectName, str):
+        	print('subject name:'+str(self.subjectName))
+        else:
+        	print('wrong subjectName type:'+str(self.subjectName.__class__))
 
-	if isinstance(self.rbrRmse, float):
-		print self.rbrRmse
-	else:
-		print 'wrong rbrRmse type'
-		print self.rbrRmse
+        if isinstance(self.rbrRmse, float):
+        	print('reg rmse:'+str(self.rbrRmse))
+        else:
+        	print('wrong rbrRmse type'+str(self.rbrRmse.__class__))
 
-	if isinstance(self.hmfRmse, float):
-		print self.hmfRmse
-	else:
-		print 'wrong hmfRmse type'
-		print self.hmfRmse
+        if isinstance(self.hmfRmse, float):
+        	print('hmf rmse:'+str(self.hmfRmse))
+        else:
+        	print('wrong hmfRmse type'+str(self.hmfRmse.__class__))
 
-	if isinstance(self.mfRmse, float):
-		print self.mfRmse
-	else:
-		print 'wrong mfRmse type'
-		print self.mfRmse
+        if isinstance(self.mfRmse, float):
+        	print('fit rmse:'+str(self.mfRmse))
+        else:
+        	print('wrong mfRmse type'+str(self.mfRmse.__class__))
 
     def execute(self):
         '''
@@ -75,11 +68,12 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         self._validateInputs()
         # Put your execute step code here before calling the '_doneExecution' method.
-        if self._config['String'][-2:] != '\n':
+        if self._config['String'][-1:] != '\n':
 		    self._config['String'] = self._config['String'] + '\n'
         
         self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
-
+        print('log entry:')
+        print(self.logEntryLine)
         self._doneExecution()
 
     def setPortData(self, index, dataIn):
@@ -90,17 +84,13 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         '''
         
         if index == 0:
-            self.subjectName = dataIn # String of the subjects name
+            self.subjectName = str(dataIn) # String of the subjects name
         elif index == 1:
-            self.rbrRmse = dataIn # Float rigid-body registration RMSE
+            self.rbrRmse = float(dataIn) # Float rigid-body registration RMSE
         elif index == 2:
-<<<<<<< HEAD
-            self.hmfRmse = dataIn # Float host-mesh fitting Rmse
-=======
-            self.hmfRmse = dataIn # Float host-mesh fitting RSME
->>>>>>> b9d8d2eebc3b349e956cde7c432ac05c161a6db2
+            self.hmfRmse = float(dataIn) # Float host-mesh fitting Rmse
         else:
-            self.mfRmse = dataIn # Float mesh fitting RMSE
+            self.mfRmse = float(dataIn) # Float mesh fitting RMSE
 
     def getPortData(self, index):
         '''

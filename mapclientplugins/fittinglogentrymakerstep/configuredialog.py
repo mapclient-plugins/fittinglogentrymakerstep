@@ -1,7 +1,7 @@
 
 
 from PySide import QtGui
-from fittinglogentrymakerstep.ui_configuredialog import Ui_ConfigureDialog
+from mapclientplugins.fittinglogentrymakerstep.ui_configuredialog import Ui_ConfigureDialog
 from PySide.QtGui import QDialog, QFileDialog, QDialogButtonBox
 
 INVALID_STYLE_SHEET = 'background-color: rgba(239, 0, 0, 50)'
