@@ -1,4 +1,3 @@
-
 '''
 MAP Client Plugin Step
 '''
@@ -15,7 +14,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
 
     def __init__(self, location):
         super(FittingLogEntryMakerStep, self).__init__('FittingLogEntryMaker', location)
-        self._configured = False # A step cannot be executed until it has been configured.
+        self._configured = False  # A step cannot be executed until it has been configured.
         self._category = 'Fitting'
         # Add any other initialisation code here:
         # Ports:
@@ -41,24 +40,24 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
     def _validateInputs(self):
         print('fitting log entry: validating inputs')
         if isinstance(self.subjectName, str):
-        	print('subject name:'+str(self.subjectName))
+            print('subject name:' + str(self.subjectName))
         else:
-        	print('wrong subjectName type:'+str(self.subjectName.__class__))
+            print('wrong subjectName type:' + str(self.subjectName.__class__))
 
         if isinstance(self.rbrRmse, float):
-        	print('reg rmse:'+str(self.rbrRmse))
+            print('reg rmse:' + str(self.rbrRmse))
         else:
-        	print('wrong rbrRmse type'+str(self.rbrRmse.__class__))
+            print('wrong rbrRmse type' + str(self.rbrRmse.__class__))
 
         if isinstance(self.hmfRmse, float):
-        	print('hmf rmse:'+str(self.hmfRmse))
+            print('hmf rmse:' + str(self.hmfRmse))
         else:
-        	print('wrong hmfRmse type'+str(self.hmfRmse.__class__))
+            print('wrong hmfRmse type' + str(self.hmfRmse.__class__))
 
         if isinstance(self.mfRmse, float):
-        	print('fit rmse:'+str(self.mfRmse))
+            print('fit rmse:' + str(self.mfRmse))
         else:
-        	print('wrong mfRmse type'+str(self.mfRmse.__class__))
+            print('wrong mfRmse type' + str(self.mfRmse.__class__))
 
     def execute(self):
         '''
@@ -69,9 +68,9 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         self._validateInputs()
         # Put your execute step code here before calling the '_doneExecution' method.
         if self._config['String'][-1:] != '\n':
-		    self._config['String'] = self._config['String'] + '\n'
-        
-        self.logEntryLine = self._config['String'] % (self.subjectName,self.rbrRmse,self.hmfRmse,self.mfRmse)
+            self._config['String'] = self._config['String'] + '\n'
+
+        self.logEntryLine = self._config['String'] % (self.subjectName, self.rbrRmse, self.hmfRmse, self.mfRmse)
         print('log entry:')
         print(self.logEntryLine)
         self._doneExecution()
@@ -82,15 +81,15 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         The index is the index of the port in the port list.  If there is only one
         uses port for this step then the index can be ignored.
         '''
-        
+
         if index == 0:
-            self.subjectName = str(dataIn) # String of the subjects name
+            self.subjectName = str(dataIn)  # String of the subjects name
         elif index == 1:
-            self.rbrRmse = float(dataIn) # Float rigid-body registration RMSE
+            self.rbrRmse = float(dataIn)  # Float rigid-body registration RMSE
         elif index == 2:
-            self.hmfRmse = float(dataIn) # Float host-mesh fitting Rmse
+            self.hmfRmse = float(dataIn)  # Float host-mesh fitting Rmse
         else:
-            self.mfRmse = float(dataIn) # Float mesh fitting RMSE
+            self.mfRmse = float(dataIn)  # Float mesh fitting RMSE
 
     def getPortData(self, index):
         '''
@@ -98,7 +97,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         The index is the index of the port in the port list.  If there is only one
         provides port for this step then the index can be ignored.
         '''
-        return self.logEntryLine # String
+        return self.logEntryLine  # String
 
     def configure(self):
         '''
@@ -116,7 +115,7 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         
         if dlg.exec_():
             self._config = dlg.getConfig()
-        
+
         self._configured = dlg.validate()
         self._configuredObserver()
 
@@ -150,5 +149,3 @@ class FittingLogEntryMakerStep(WorkflowStepMountPoint):
         d.identifierOccursCount = self._identifierOccursCount
         d.setConfig(self._config)
         self._configured = d.validate()
-
-
