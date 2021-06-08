@@ -13,14 +13,14 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 
-class Ui_Dialog(object):
-    def setupUi(self, Dialog):
-        if not Dialog.objectName():
-            Dialog.setObjectName(u"Dialog")
-        Dialog.resize(418, 303)
-        self.gridLayout = QGridLayout(Dialog)
+class Ui_ConfigureDialog(object):
+    def setupUi(self, ConfigureDialog):
+        if not ConfigureDialog.objectName():
+            ConfigureDialog.setObjectName(u"ConfigureDialog")
+        ConfigureDialog.resize(418, 303)
+        self.gridLayout = QGridLayout(ConfigureDialog)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.configGroupBox = QGroupBox(Dialog)
+        self.configGroupBox = QGroupBox(ConfigureDialog)
         self.configGroupBox.setObjectName(u"configGroupBox")
         self.formLayout = QFormLayout(self.configGroupBox)
         self.formLayout.setObjectName(u"formLayout")
@@ -47,7 +47,7 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.configGroupBox, 0, 0, 1, 1)
 
-        self.buttonBox = QDialogButtonBox(Dialog)
+        self.buttonBox = QDialogButtonBox(ConfigureDialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setOrientation(Qt.Horizontal)
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
@@ -55,17 +55,17 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
 
 
-        self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(Dialog.accept)
-        self.buttonBox.rejected.connect(Dialog.reject)
+        self.retranslateUi(ConfigureDialog)
+        self.buttonBox.accepted.connect(ConfigureDialog.accept)
+        self.buttonBox.rejected.connect(ConfigureDialog.reject)
 
-        QMetaObject.connectSlotsByName(Dialog)
+        QMetaObject.connectSlotsByName(ConfigureDialog)
     # setupUi
 
-    def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"ConfigureDialog", None))
+    def retranslateUi(self, ConfigureDialog):
+        ConfigureDialog.setWindowTitle(QCoreApplication.translate("ConfigureDialog", u"ConfigureDialog", None))
         self.configGroupBox.setTitle("")
-        self.label0.setText(QCoreApplication.translate("Dialog", u"identifier:  ", None))
-        self.label1.setText(QCoreApplication.translate("Dialog", u"String:  ", None))
+        self.label0.setText(QCoreApplication.translate("ConfigureDialog", u"identifier:  ", None))
+        self.label1.setText(QCoreApplication.translate("ConfigureDialog", u"String:  ", None))
     # retranslateUi
 
